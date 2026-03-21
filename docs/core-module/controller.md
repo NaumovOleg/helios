@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Controllers
@@ -17,10 +17,10 @@ Create `src/controllers/tasks.controller.ts`:
 ```typescript
 import {
   Controller,
-  Get,
-  Post,
-  Put,
-  Delete,
+  GET,
+  POST,
+  PUT,
+  DELETE,
   Body,
   Param,
 } from "@heliosjs/core";
@@ -38,12 +38,12 @@ let nextId = 1;
 
 @Controller("/tasks")
 export class TasksController {
-  @Get("/")
+  @GET("/")
   getAllTasks(): Task[] {
     return tasks;
   }
 
-  @Get("/:id")
+  @GET("/:id")
   getTaskById(@Param("id") id: string): Task | { error: string } {
     const taskId = parseInt(id);
     const task = tasks.find((t) => t.id === taskId);
@@ -55,7 +55,7 @@ export class TasksController {
     return task;
   }
 
-  @Post("/")
+  @POST("/")
   createTask(@Body() body: { title: string }): Task {
     const newTask: Task = {
       id: nextId++,
@@ -67,7 +67,7 @@ export class TasksController {
     return newTask;
   }
 
-  @Put("/:id")
+  @PUT("/:id")
   updateTask(
     @Param("id") id: string,
     @Body() body: Partial<Task>,
@@ -85,7 +85,7 @@ export class TasksController {
     return task;
   }
 
-  @Delete("/:id")
+  @DELETE("/:id")
   deleteTask(@Param("id") id: string): { message: string } | { error: string } {
     const taskId = parseInt(id);
     const index = tasks.findIndex((t) => t.id === taskId);
@@ -97,6 +97,9 @@ export class TasksController {
     tasks.splice(index, 1);
     return { message: "Task deleted successfully" };
   }
+
+  @ANY()
+  async any(@Req() resp: any) {}
 }
 ```
 
@@ -105,11 +108,13 @@ export class TasksController {
 | Decorator               | Purpose                                                 |
 | ----------------------- | ------------------------------------------------------- |
 | `@Controller('/tasks')` | Defines the base route for all methods in this class    |
-| `@Get('/')`             | Handles GET requests to `/tasks`                        |
-| `@Get('/:id')`          | Handles GET requests to `/tasks/1` (with URL parameter) |
-| `@Post('/')`            | Handles POST requests to `/tasks`                       |
-| `@Put('/:id')`          | Handles PUT requests to `/tasks/1`                      |
-| `@Delete('/:id')`       | Handles DELETE requests to `/tasks/1`                   |
+| `@GET('/')`             | Handles GET requests to `/tasks`                        |
+| `@GET('/:id')`          | Handles GET requests to `/tasks/1` (with URL parameter) |
+| `@POST('/')`            | Handles POST requests to `/tasks`                       |
+| `@PUT('/:id')`          | Handles PUT requests to `/tasks/1`                      |
+| `@DELETE('/:id')`       | Handles DELETE requests to `/tasks/1`                   |
+| `@PATCH('/:id')`        | Handles PATCH requests to `/tasks/1`                    |
+| `@ANY()`                | Handles all requests                                    |
 | `@Param('id')`          | Extracts the `id` parameter from the URL                |
 | `@Body()`               | Extracts the request body                               |
 
@@ -118,7 +123,6 @@ export class TasksController {
 Update `src/app.ts` to include your new controller:
 
 ```typescript
-import "reflect-metadata";
 import { Server } from "@heliosjs/http";
 import { HealthController } from "./controllers/health.controller";
 import { TasksController } from "./controllers/tasks.controller";
@@ -131,6 +135,38 @@ Or You can use nested routing:
 
 ```typescript
 @Controller("/tasks", controllers:[HealthController])
+```
+
+## Interceptors in Controllers
+
+Interceptors are functions defined in the controller decorator that can modify or handle data before the response is sent.
+
+They receive three parameters:
+
+- `data`: The data to be processed or modified.
+- `req`: The incoming request object.
+- `res`: The outgoing response object.
+
+### Example
+
+```typescript
+@Controller("/example", {
+  interceptors: [
+    (data, req, res) => {
+      // Modify data before it is sent
+      if (typeof data === "string") {
+        return data.toUpperCase();
+      }
+      return data;
+    },
+  ],
+})
+export class ExampleController {
+  @GET("/")
+  getData(): string {
+    return "hello world";
+  }
+}
 ```
 
 ## Step 4: Test Your API
@@ -230,7 +266,7 @@ Expected response:
 ## What You've Learned
 
 - [32m[1m[22m[39m Creating controllers with `@Controller`
-- [32m[1m[22m[39m Defining routes with `@Get`, `@Post`, `@Put`, `@Delete`
+- [32m[1m[22m[39m Defining routes with `@GET`, `@POST`, `@PUT`, `@DELETE`
 - [32m[1m[22m[39m Using `@Param` to extract URL parameters
 - [32m[1m[22m[39m Using `@Body` to extract request body
 - [32m[1m[22m[39m Building a complete CRUD API

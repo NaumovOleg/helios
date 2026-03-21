@@ -45,7 +45,7 @@ throw new NotFound("User with id 123 not found");
 ## Using Custom Errors
 
 ```typescript
-import { Controller, Get, Post, Body, Param } from "@heliosjs/core";
+import { Controller, GET, POST, Body, Param } from "@heliosjs/core";
 import {
   ValidationError,
   NotFound,
@@ -63,7 +63,7 @@ export class UserController {
   private users: User[] = [];
   private nextId = 1;
 
-  @Get("/:id")
+  @GET("/:id")
   getUser(@Param("id") id: string) {
     const userId = parseInt(id);
     const user = this.users.find((u) => u.id === userId);
@@ -75,7 +75,7 @@ export class UserController {
     return user;
   }
 
-  @Post("/")
+  @POST("/")
   createUser(@Body() userData: Partial<User>) {
     // Custom validation
     if (!userData.name) {
@@ -102,10 +102,6 @@ export class UserController {
 
     this.users.push(newUser);
     return newUser;
-  }
-
-  private isValidEmail(email: string): boolean {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 }
 ```

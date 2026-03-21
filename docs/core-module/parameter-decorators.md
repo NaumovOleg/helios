@@ -12,42 +12,42 @@ HeliosJS supports all standard HTTP methods:
 
 | Decorator        | Method  | Description              |
 | ---------------- | ------- | ------------------------ |
-| `@Get(path)`     | GET     | Retrieve data            |
-| `@Post(path)`    | POST    | Create new resources     |
-| `@Put(path)`     | PUT     | Update entire resources  |
-| `@Patch(path)`   | PATCH   | Update partial resources |
-| `@Delete(path)`  | DELETE  | Remove resources         |
+| `@GET(path)`     | GET     | Retrieve data            |
+| `@POST(path)`    | POST    | Create new resources     |
+| `@PUT(path)`     | PUT     | Update entire resources  |
+| `@PATCH(path)`   | PATCH   | Update partial resources |
+| `@DELETE(path)`  | DELETE  | Remove resources         |
 | `@Options(path)` | OPTIONS | Get allowed methods      |
 | `@Head(path)`    | HEAD    | Get headers only         |
 
 ## Basic Routes
 
 ```typescript
-import { Controller, Get, Post, Put, Patch, Delete } from "@heliosjs/core";
+import { Controller, GET, POST, PUT, PATCH, DELETE } from "@heliosjs/core";
 
 @Controller("/users")
 export class UserController {
-  @Get("/")
+  @GET("/")
   findAll() {
     return [{ id: 1, name: "Alice" }];
   }
 
-  @Post("/")
+  @POST("/")
   create(@Body() data: any) {
     return { id: 2, ...data };
   }
 
-  @Put("/:id")
+  @PUT("/:id")
   update(@Param("id") id: string, @Body() data: any) {
     return { id: parseInt(id), ...data };
   }
 
-  @Patch("/:id")
+  @PATCH("/:id")
   partialUpdate(@Param("id") id: string, @Body() data: any) {
     return { id: parseInt(id), ...data };
   }
 
-  @Delete("/:id")
+  @DELETE("/:id")
   remove(@Param("id") id: string) {
     return { deleted: true, id: parseInt(id) };
   }
@@ -66,13 +66,13 @@ import { Controller, Get, Param } from "@heliosjs/core";
 @Controller("/users")
 export class UserController {
   // Match: /users/123
-  @Get("/:id")
+  @GET("/:id")
   getUserById(@Param("id") id: string) {
     return { userId: parseInt(id) };
   }
 
   // Match: /users/123/posts/456
-  @Get("/:userId/posts/:postId")
+  @GET("/:userId/posts/:postId")
   getUserPost(
     @Param("userId") userId: string,
     @Param("postId") postId: string,
@@ -95,7 +95,7 @@ import { Controller, Get, Query } from "@heliosjs/core";
 @Controller("/users")
 export class UserController {
   // Match: /users?page=1&limit=10&search=john
-  @Get("/")
+  @GET("/")
   findAll(
     @Query("page") page?: string,
     @Query("limit") limit?: string,
@@ -109,7 +109,7 @@ export class UserController {
   }
 
   // Get all query parameters as an object
-  @Get("/filter")
+  @GET("/filter")
   filter(@Query() query: any) {
     return { filters: query };
   }
@@ -131,14 +131,14 @@ interface CreateUserDto {
 
 @Controller("/users")
 export class UserController {
-  @Post("/")
+  @POST("/")
   create(@Body() userData: CreateUserDto) {
     // userData contains the parsed JSON body
     return { id: 1, ...userData };
   }
 
   // Extract specific fields
-  @Post("/validate")
+  @POST("/validate")
   validate(@Body("email") email: string) {
     return { email };
   }
@@ -185,7 +185,7 @@ let nextId = 1;
 
 @Controller("/tasks")
 export class TasksController {
-  @Post("/")
+  @POST("/")
   createTask(@Body(CreateTaskDto) body: CreateTaskDto): Task {
     const newTask: Task = {
       id: nextId++,
@@ -197,7 +197,7 @@ export class TasksController {
     return newTask;
   }
 
-  @Post("/:id")
+  @POST("/:id")
   updateTask(
     @Body(UpdateTaskDto) body: UpdateTaskDto,
   ): Task | { error: string } {
@@ -219,7 +219,7 @@ import { Controller, Get, Headers } from "@heliosjs/core";
 
 @Controller("/auth")
 export class AuthController {
-  @Get("/profile")
+  @GET("/profile")
   getProfile(
     @Headers("authorization") auth: string,
     @Headers("user-agent") userAgent: string,
@@ -231,7 +231,7 @@ export class AuthController {
   }
 
   // Get all headers
-  @Get("/headers")
+  @GET("/headers")
   getAllHeaders(@Headers() headers: any) {
     return { headers };
   }
@@ -248,7 +248,7 @@ import { IncomingMessage } from "http";
 
 @Controller("/request")
 export class RequestController {
-  @Get("/info")
+  @GET("/info")
   getRequestInfo(@Req() req: Request) {
     return {
       method: req.method,
@@ -269,7 +269,7 @@ import { Controller, Get, Res, Response } from "@heliosjs/core";
 
 @Controller("/response")
 export class ResponseController {
-  @Get("/custom")
+  @GET("/custom")
   sendCustomResponse(@Res() res: Response) {
     res.statusCode = 201;
     res.setHeader("X-Custom-Header", "Hello");
@@ -308,7 +308,7 @@ export class ProductController {
   private nextId = 1;
 
   // GET /products?category=electronics&minPrice=10
-  @Get("/")
+  @GET("/")
   findAll(
     @Query("category") category?: string,
     @Query("minPrice") minPrice?: string,
@@ -328,7 +328,7 @@ export class ProductController {
   }
 
   // GET /products/123
-  @Get("/:id")
+  @GET("/:id")
   findOne(@Param("id") id: string) {
     const product = this.products.find((p) => p.id === parseInt(id));
     if (!product) {
@@ -338,7 +338,7 @@ export class ProductController {
   }
 
   // POST /products
-  @Post("/")
+  @POST("/")
   create(
     @Body() productData: Omit<Product, "id">,
     @Headers("authorization") auth: string,
@@ -358,7 +358,7 @@ export class ProductController {
   }
 
   // PUT /products/123
-  @Put("/:id")
+  @PUT("/:id")
   update(@Param("id") id: string, @Body() productData: Partial<Product>) {
     const productId = parseInt(id);
     const index = this.products.findIndex((p) => p.id === productId);
@@ -372,7 +372,7 @@ export class ProductController {
   }
 
   // DELETE /products/123
-  @Delete("/:id")
+  @DELETE("/:id")
   remove(@Param("id") id: string, @Req() req: any, @Res() res: any) {
     const productId = parseInt(id);
     const index = this.products.findIndex((p) => p.id === productId);
@@ -409,7 +409,7 @@ import { Controller, Post, Files } from "@heliosjs/core";
 
 @Controller("/upload")
 export class UploadController {
-  @Post("/")
+  @POST("/")
   uploadFile(@Files("file") file: any) {
     // file contains the uploaded file data
     return { uploaded: true, file };
@@ -431,13 +431,13 @@ Routes are matched in the order they are defined. More specific routes should co
 @Controller("/users")
 export class UserController {
   // Specific route first
-  @Get("/profile")
+  @GET("/profile")
   getProfile() {
     return { page: "profile" };
   }
 
   // General route last
-  @Get("/:id")
+  @GET("/:id")
   getUserById(@Param("id") id: string) {
     return { userId: id };
   }

@@ -270,9 +270,3 @@ Expected response:
 - [32m[1m[22m[39m Using `@Param` to extract URL parameters
 - [32m[1m[22m[39m Using `@Body` to extract request body
 - [32m[1m[22m[39m Building a complete CRUD API
-
-## Next Steps
-
-Now that you know how to create controllers and routes, let's dive deeper into routing and parameters.
-
-[Next: Routing & Parameters](./routing-parameters.md)

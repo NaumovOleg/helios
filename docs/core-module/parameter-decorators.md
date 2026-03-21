@@ -443,9 +443,3 @@ export class UserController {
   }
 }
 ```
-
-## Next Steps
-
-Now you understand routing and parameters. Next, let's learn about validation and error handling!
-
-Next: Validation & Error Handling

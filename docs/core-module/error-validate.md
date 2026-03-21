@@ -160,9 +160,3 @@ import { UserController } from "./controllers/user.controller";
 })
 export class App {}
 ```
-
-## Next Steps
-
-Now you can validate data and handle errors. Next, let's learn about middleware!
-
-Next: Middleware

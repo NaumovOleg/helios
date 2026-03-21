@@ -241,9 +241,3 @@ Change the port in `app.ts`:
 ```typescript
 await this.server.listen(3001); // Use a different port
 ```
-
-## Next Steps
-
-Now that your project is set up, let's create your first real controller!
-
-Next: Your First Controller

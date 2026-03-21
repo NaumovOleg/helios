@@ -50,13 +50,13 @@ This tutorial is divided into several parts:
 
 If you get stuck:
 
-- Open an [issue on GitHub](https://github.com/NaumovOleg/helios/issues)
+- Open an [issue on GitHub](https://github.com/NaumovOleg/heliosjs/issues)
 
 ## Ready to Start?
 
 Let's build something amazing! 🚀
 
-**Next:** [Installation & Setup](/docs/getting-started/installation)
+**Next:** [Installation & Setup](/docs/core-module/installation)
 
 ---
 

@@ -227,103 +227,13 @@ Expected response:
 }
 ```
 
-## Step 5: Add Validation
-
-Let's add some basic validation to our controller:
-
-```typescript
-import {
-  Controller,
-  Get,
-  Post,
-  Put,
-  Delete,
-  Body,
-  Param,
-  HttpError,
-} from "@heliosjs/core";
-
-@Controller("/tasks")
-export class TasksController {
-  // ... existing code ...
-
-  @Post("/")
-  createTask(@Body() body: { title: string }): Task {
-    // Validation
-    if (!body.title || body.title.trim() === "") {
-      throw new HttpError(400, "Title is required");
-    }
-
-    if (body.title.length < 3) {
-      throw new HttpError(400, "Title must be at least 3 characters");
-    }
-
-    const newTask: Task = {
-      id: nextId++,
-      title: body.title.trim(),
-      completed: false,
-    };
-
-    tasks.push(newTask);
-    return newTask;
-  }
-
-  @Put("/:id")
-  updateTask(
-    @Param("id") id: string,
-    @Body() body: Partial<Task>,
-  ): Task | { error: string } {
-    const taskId = parseInt(id);
-    const task = tasks.find((t) => t.id === taskId);
-
-    if (!task) {
-      throw new HttpError(404, "Task not found");
-    }
-
-    // Validation
-    if (body.title !== undefined && body.title.trim() === "") {
-      throw new HttpError(400, "Title cannot be empty");
-    }
-
-    if (body.title !== undefined && body.title.length < 3) {
-      throw new HttpError(400, "Title must be at least 3 characters");
-    }
-
-    if (body.title !== undefined) task.title = body.title.trim();
-    if (body.completed !== undefined) task.completed = body.completed;
-
-    return task;
-  }
-}
-```
-
-## Step 6: Test Validation
-
-Try creating a task without a title:
-
-```bash
-curl -X POST http://localhost:3000/tasks \
-  -H "Content-Type: application/json" \
-  -d '{"title": ""}'
-```
-
-Expected response:
-
-```json
-{
-  "statusCode": 400,
-  "message": "Title is required"
-}
-```
-
 ## What You've Learned
 
-- ✅ Creating controllers with `@Controller`
-- ✅ Defining routes with `@Get`, `@Post`, `@Put`, `@Delete`
-- ✅ Using `@Param` to extract URL parameters
-- ✅ Using `@Body` to extract request body
-- ✅ Adding validation with `HttpError`
-- ✅ Building a complete CRUD API
+- [32m[1m[22m[39m Creating controllers with `@Controller`
+- [32m[1m[22m[39m Defining routes with `@Get`, `@Post`, `@Put`, `@Delete`
+- [32m[1m[22m[39m Using `@Param` to extract URL parameters
+- [32m[1m[22m[39m Using `@Body` to extract request body
+- [32m[1m[22m[39m Building a complete CRUD API
 
 ## Next Steps
 

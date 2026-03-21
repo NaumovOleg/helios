@@ -129,7 +129,7 @@ Create `src/controllers/health.controller.ts`:
 
 ```typescript
 import "reflect-metadata";
-import { Controller, Response, IResponse } from "@heliosjs/core";
+import { Controller, Response, Response } from "@heliosjs/core";
 
 @Controller("/health")
 export class HealthController {

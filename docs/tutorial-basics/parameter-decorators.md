@@ -397,8 +397,8 @@ export class ProductController {
 | `@Body(name?)`    | Request body   | JSON payload                  |
 | `@Headers(name?)` | HTTP headers   | Authorization header          |
 | `@Files(name?)`   | Multipart data |                               |
-| `@Req()`          | Raw request    | Full IncomingMessage object   |
-| `@Res()`          | Raw response   | Full ServerResponse object    |
+| `@Req()`          | Raw request    | Full Incoming Message object  |
+| `@Res()`          | Raw response   | Full Server Response object   |
 
 ## Multipart Form Data (@Files)
 

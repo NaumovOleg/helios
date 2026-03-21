@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkdocs=globalThis.webpackChunkdocs||[]).push([[1903],{1912(s){s.exports=JSON.parse('{"blogBasePath":"/helios/blog","blogTitle":"Blog","authorsListPath":"/helios/blog/authors"}')}}]);

@@ -2,46 +2,63 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Intro
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to HeliosJS! This tutorial will guide you through building your first application step by step.
 
-## Getting Started
+## What You'll Build
 
-Get started by **creating a new site**.
+By the end of this tutorial, you'll have a working REST API for a task management system with:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+- ✅ Create, read, update, and delete tasks
+- ✅ Input validation
+- ✅ Error handling
+- ✅ Clean architecture using decorators
 
-### What you'll need
+## What You'll Learn
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+- How to set up a HeliosJS project
+- How to create controllers with decorators
+- How to define routes using `@Get`, `@Post`, `@Put`, `@Delete`
+- How to handle request data (`@Body`, `@Param`, `@Query`)
+- How to use middleware, plugins, sanitizers, etc..
+- How to handle errors with `@Catch`
 
-## Generate a new site
+## Prerequisites
 
-Generate a new Docusaurus site using the **classic template**.
+Before you start, make sure you have:
 
-The classic template will automatically be added to your project after you run the command:
+- **Node.js** 20 or higher
+- **npm** or **yarn** installed
+- Basic knowledge of TypeScript/JavaScript
+- A code editor (VS Code recommended)
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+## Tutorial Structure
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+This tutorial is divided into several parts:
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+| Part | Topic                 | What you'll do                            |
+| ---- | --------------------- | ----------------------------------------- |
+| 1    | Installation & Setup  | Create a new project and install HeliosJS |
+| 2    | Your First Controller | Create a controller with basic routes     |
+| 3    | Routing & Parameters  | Handle dynamic routes and request data    |
+| 4    | Validation            | Validate incoming data                    |
+| 5    | Error Handling        | Handle errors gracefully                  |
+| 6    | Middleware            | Add logging, CORS, and other middleware   |
 
-## Start your site
+## Getting Help
 
-Run the development server:
+If you get stuck:
 
-```bash
-cd my-website
-npm run start
-```
+- Open an [issue on GitHub](https://github.com/NaumovOleg/helios/issues)
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+## Ready to Start?
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+Let's build something amazing! 🚀
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+**Next:** [Installation & Setup](/docs/getting-started/installation)
+
+---
+
+**Estimated time:** 15-20 minutes per part
+**Total tutorial time:** About 2 hours

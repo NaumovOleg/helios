@@ -95,7 +95,7 @@ The `@Server` decorator accepts a configuration object with the following proper
 | `middlewares`  | `MiddlewareCB[]`                                                                  | Array of middleware callback functions to apply globally.                         |
 | `cors`         | `CORSConfig`                                                                      | Configuration object for Cross-Origin Resource Sharing (CORS).                    |
 | `interceptor`  | `InterceptorCB`                                                                   | Interceptor callback function for request/response interception.                  |
-| `errorHandler` | `(error: AppError, req: Request, response: Response) => any`                      | Custom error handling callback.                                                   |
+| `errorHandler` | `(error: HeliosError, req: Request, response: Response) => any`                   | Custom error handling callback.                                                   |
 | `sanitizers`   | `SanitizerConfig[]`                                                               | Array of sanitizer configurations to sanitize request data.                       |
 | `statics`      | `StaticConfig[]`                                                                  | Array of static file serving configurations.                                      |
 | `websocket`    | `{ path: string; lazy?: boolean }`                                                | WebSocket configuration with path and optional lazy loading.                      |

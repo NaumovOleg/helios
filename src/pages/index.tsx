@@ -72,25 +72,27 @@ function Code() {
           <div className={styles.codeBlock}>
             <pre>
               <code>
-                {`import { Controller, Get, Post } from '@heliosjs/core';
-import { HeliosHttp } from '@heliosjs/http';
+                {`
+    import { Controller, Get, Post } from '@heliosjs/core';
+    import { Helios } from '@heliosjs/http';
 
-@Controller('/api')
-class ApiController {
-  @Get('/health')
-  health() {
-    return { status: 'ok' };
-  }
-  
-  @Post('/users')
-  createUser(@Body() data: UserDto) {
-    return { id: 1, ...data };
-  }
-}
-
-const app = new HeliosHttp();
-app.registerController(ApiController);
-app.listen(3000);`}
+    @Controller('/api')
+    class ApiController {
+      @Get('/health')
+      health() {
+        return { status: 'ok' };
+      }
+      
+      @Post('/users')
+      createUser(@Body() data: UserDto) {
+        return { id: 1, ...data };
+      }
+    }
+    @Server({ controllers: [Api] })
+    export class Server {}
+    const app = new Helios(Server);
+    app.listen(3000);
+`}
               </code>
             </pre>
           </div>

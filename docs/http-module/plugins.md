@@ -29,8 +29,8 @@ Example plugin skeleton:
 
 ```typescript
 import { IncomingMessage, Server } from "http";
-import { MiddlewareCB, Request, Response } from "quantum-flow/core";
-import { Plugin } from "quantum-flow/http";
+import { MiddlewareCB, Request, Response } from "@heliosjs/core";
+import { Plugin } from "@heliosjs/http";
 
 const myPlugin: Plugin = {
   name: "myPlugin",
@@ -60,9 +60,9 @@ To use a plugin with an HTTP server:
 Example:
 
 ```typescript
-import { Server, Helios } from "quantum-flow/http";
+import { Server, Helios } from "@heliosjs/http";
 import { User, UserMetadata } from "./controllers";
-import { Plugin } from "quantum-flow/http";
+import { Plugin } from "@heliosjs/http";
 
 @Server({ controllers: [User, UserMetadata] })
 class App {}

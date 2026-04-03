@@ -47,7 +47,7 @@ You can use plugins to extend the Lambda adapter with custom logic. Register plu
 ### Example Plugin
 
 ```typescript
-import { Plugin } from "quantum-flow/aws";
+import { Plugin } from "@heliosjs/aws";
 
 const dbConnectionPlugin: Plugin = {
   name: "dbConnection",
@@ -61,13 +61,13 @@ const dbConnectionPlugin: Plugin = {
 ### Registering Plugin with Lambda Adapter
 
 ```typescript
-import { LambdaAdapter } from "quantum-flow/aws";
+import { Helios } from "@heliosjs/aws";
 import { Root } from "./controllers";
 
-const lambdaAdapter = new LambdaAdapter(Root);
-lambdaAdapter.usePlugin(dbConnectionPlugin);
+const app = new Helios(Root);
+app.usePlugin(dbConnectionPlugin);
 
-export const handler = lambdaAdapter.handler;
+export const handler = app.handler;
 ```
 
 ## Plugin Hooks Lifecycle
@@ -85,8 +85,8 @@ export const handler = lambdaAdapter.handler;
 
 ```typescript
 import { IncomingMessage } from "http";
-import { Request, Response } from "quantum-flow/core";
-import { Plugin } from "quantum-flow/aws";
+import { Request, Response } from "@heliosjs/core";
+import { Plugin } from "@heliosjs/aws";
 
 const examplePlugin: Plugin = {
   name: "examplePlugin",

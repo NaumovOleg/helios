@@ -76,17 +76,17 @@ import { OnSSEConnection, OnSSEError, OnSSEClose } from "@heliosjs/http";
 @Controller("user")
 export class User {
   @OnSSEConnection()
-  async onsseconnection(@Request() req: any, @Response() res: any) {
+  async onsseconnection(@Req() req: any, @Res() res: any) {
     return req.body;
   }
 
   @OnSSEError()
-  async onsseerror(@Request() req: any, @Response() res: any) {
+  async onsseerror(@Req() req: any, @Res() res: any) {
     return req.body;
   }
 
   @OnSSEClose()
-  async onsseclose(@Request() req: any, @Response() res: any) {
+  async onsseclose(@Req() req: any, @Res() res: any) {
     return req.body;
   }
 }
@@ -158,17 +158,17 @@ class DTO {
 })
 export class User {
   @OnSSEConnection()
-  async onsseconnection(@Request() req: any, @Response() res: any) {
+  async onsseconnection(@Req() req: any, @Res() res: any) {
     return req.body;
   }
 
   @OnSSEError()
-  async onsseerror(@Request() req: any, @Response() res: any) {
+  async onsseerror(@Req() req: any, @Res() res: any) {
     return req.body;
   }
 
   @OnSSEClose()
-  async onsseclose(@Request() req: any, @Response() res: any) {
+  async onsseclose(@Req() req: any, @Res() res: any) {
     return req.body;
   }
 }

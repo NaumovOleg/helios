@@ -1,6 +1,7 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
+import Logo from "../../static/img/helios-logo.svg";
 import styles from "./index.module.css";
 
 function Features() {
@@ -110,7 +111,9 @@ function HomepageHeader() {
       <div className="container">
         <div className={styles.heroContent}>
           <div className={styles.heroLogo}>
-            <div className={styles.heroIcon}>🌞</div>
+            <div className={styles.heroIcon}>
+              <Logo />
+            </div>
           </div>
           <h1 className={styles.heroTitle}>{siteConfig.title}</h1>
           <div className={styles.buttons}>

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 7
 ---
 
 # HTTP Server
@@ -31,7 +31,7 @@ class MyServer {}
 ### Example from `packages/src/examples/app.ts`
 
 ```ts
-import { ANY, Controller, Req } from "@heliosjs/core";
+import { Any, Controller, Req } from "@heliosjs/core";
 import { Server } from "@heliosjs/http";
 import path from "path";
 
@@ -45,7 +45,7 @@ import { User } from "./controllers/user";
   middlewares: [function Global(req, res, next) {}],
 })
 export class Root {
-  @ANY()
+  @Any()
   use() {
     return "default";
   }
@@ -53,7 +53,7 @@ export class Root {
 
 @Controller({ prefix: "metric", controllers: [] })
 export class MetricsController {
-  @ANY()
+  @Any()
   async any(@Req() resp: any) {}
 }
 

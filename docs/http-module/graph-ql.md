@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 10
 ---
 
 # GraphQL Module in Helios
@@ -11,7 +11,7 @@ Helios supports GraphQL integration using `type-graphql` and `graphql-yoga` pack
 To use GraphQL in Helios, install the following dependencies:
 
 ```bash
-yarn add graphql graphql-yoga type-graphql class-validator reflect-metadata
+yarn add graphql graphql-yoga type-graphql  graphql-scalars
 ```
 
 Ensure you have `reflect-metadata` imported at the entry point of your application:

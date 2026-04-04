@@ -24,10 +24,22 @@ const sidebars: SidebarsConfig = {
       label: "Basics",
       items: [
         "core-module/installation",
+        "core-module/controllers",
         "core-module/error-validate",
-        "core-module/controller",
-        "core-module/middlewares",
         "core-module/parameter-decorators",
+      ],
+    },
+    {
+      type: "category",
+      label: "Middlewares",
+      items: [
+        "middlewares/use",
+        "middlewares/catch",
+        "middlewares/intercept",
+        "middlewares/pipe",
+        "middlewares/sanitize",
+        "middlewares/cors",
+        "middlewares/guard",
       ],
     },
     {

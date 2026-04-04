@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Installation & Setup
@@ -12,7 +12,7 @@ Make sure you have Node.js installed:
 
 ```bash
 node --version
-# Should be v20.0.0 or higher
+# Should be v22.0.0 or higher
 ```
 
 ## Step 1: Create a New Project
@@ -47,12 +47,13 @@ yarn add @heliosjs/core @heliosjs/http reflect-metadata
 
 ### What Each Package Does
 
-| Package          | Purpose                                    |
-| ---------------- | ------------------------------------------ |
-| @heliosjs/core   | Core decorators and dependency injection   |
-| @heliosjs/http   | HTTP server, routing, and request handling |
-| @heliosjs/aws    | Aws adapters                               |
-| reflect-metadata | Required for TypeScript decorators to work |
+| Package               | Purpose                                    |
+| --------------------- | ------------------------------------------ |
+| @heliosjs/core        | Core decorators and dependency injection   |
+| @heliosjs/http        | HTTP server, routing, and request handling |
+| @heliosjs/aws         | Aws adapters                               |
+| @heliosjs/middlewares | Middleware decorators                      |
+| reflect-metadata      | Required for TypeScript decorators to work |
 
 ## Step 3: Install TypeScript
 
@@ -107,7 +108,8 @@ Create the following folder structure:
 my-helios-app/
 ├── src/
 │   ├── controllers/
-│   │   └── health.controller.ts
+│   │   └── user.controller.ts
+│   │   └── root.controller.ts
 │   ├── app.ts
 │   └── index.ts
 ├── package.json
@@ -125,15 +127,15 @@ dist/
 
 ## Step 6: Create Your First App
 
-Create `src/controllers/health.controller.ts`:
+Create `src/controllers/user.controller.ts`:
 
 ```typescript
 import "reflect-metadata";
 import { Controller, Response, Response } from "@heliosjs/core";
 
-@Controller("/health")
+@Controller("/user")
 export class HealthController {
-  @Get("/")
+  @Get("/:id")
   check() {
     return { status: "ok", timestamp: new Date().toISOString() };
   }

@@ -14,43 +14,22 @@ HeliosJS provides a built-in error handling system that catches exceptions and r
 
 HeliosJS provides a set of custom error classes for common error scenarios. These are located in `packages/src/utils/core/error/`:
 
-- `Authorizations`
-- `DependencyFailed`
-- `DuplicateEntry`
-- `Forbidden`
-- `InvalidState`
-- `NotFound`
-- `RateLimit`
-- `ServiceUnavailable`
-- `Validation`
-
-Example usage:
-
-```typescript
-import {
-  Authorizations,
-  DependencyFailed,
-  DuplicateEntry,
-  Forbidden,
-  InvalidState,
-  NotFound,
-  RateLimit,
-  ServiceUnavailable,
-  ValidationError,
-} from "@heliosjs/core/utils/error";
-
-throw new NotFound("User with id 123 not found");
-```
+- `UnauthorizedError`
+- `DependencyFailedError`
+- `DuplicateEntryError`
+- `ForbiddenError`
+- `InvalidStateError`
+- `NotFoundError`
+- `ServiceUnavailableError`
+- `ValidationError`
+- `InternalServerError`
+- `RateLimitExceededError`
 
 ## Using Custom Errors
 
 ```typescript
-import { Controller, GET, POST, Body, Param } from "@heliosjs/core";
-import {
-  ValidationError,
-  NotFound,
-  Forbidden,
-} from "@heliosjs/core/utils/error";
+import { Controller, Get, Post, Body, Param, ValidationError, NotFoundError } from "@heliosjs/core";
+
 
 interface User {
   id: number;
@@ -63,7 +42,7 @@ export class UserController {
   private users: User[] = [];
   private nextId = 1;
 
-  @GET("/:id")
+  @Get("/:id")
   getUser(@Param("id") id: string) {
     const userId = parseInt(id);
     const user = this.users.find((u) => u.id === userId);
@@ -75,33 +54,13 @@ export class UserController {
     return user;
   }
 
-  @POST("/")
+  @Post("/")
   createUser(@Body() userData: Partial<User>) {
     // Custom validation
     if (!userData.name) {
       throw new ValidationError("name", "Name is required");
     }
-
-    if (userData.name.length < 3) {
-      throw new ValidationError("name", "Name must be at least 3 characters");
-    }
-
-    if (!userData.email) {
-      throw new ValidationError("email", "Email is required");
-    }
-
-    if (!this.isValidEmail(userData.email)) {
-      throw new ValidationError("email", "Invalid email format");
-    }
-
-    const newUser: User = {
-      id: this.nextId++,
-      name: userData.name,
-      email: userData.email,
-    };
-
-    this.users.push(newUser);
-    return newUser;
+    ...
   }
 }
 ```

@@ -34,7 +34,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: "img/docusaurus-social-card.jpg",
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -42,7 +41,7 @@ const config: Config = {
       title: "HELIOS",
       logo: {
         alt: "HELIOS Logo",
-        src: "img/logo.svg",
+        src: "img/helios-logo.svg",
       },
       items: [
         {

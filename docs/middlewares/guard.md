@@ -12,11 +12,11 @@ Apply the `@Guard` decorator to a class or method, passing a guard class or func
 
 ## Parameters
 
-- `guard: Guard | GuardFn` - A guard class or function used to determine whether the request is allowed to proceed.
+- `guard: GuardInstance | GuardFunction` - A guard class or function used to determine whether the request is allowed to proceed.
 
 ## Examples
 
-### Function Guard
+### Function
 
 ```typescript
 @Guard((req, res) => {
@@ -26,13 +26,17 @@ Apply the `@Guard` decorator to a class or method, passing a guard class or func
 class MyController {}
 ```
 
-### Class-based Guard
+### Class-based GuardClass
+
+
 
 ```typescript
-class AuthGuard {
+import {GuardInstance} from '@heliosjs/core'
+class AuthGuard implements GuardInstance {
   canActivate(req: Request, res: Response) {
     // Allow only if authorization header is present
-    return !!req.headers.authorization;
+    // return !!req.headers.authorization;
+     return "Forbidden";
   }
 }
 
@@ -42,7 +46,7 @@ class MyController {}
 
 ## Metadata Handling
 
-The decorator attaches the guard(s) as metadata on the target class or method using a specific metadata key (`CONTROLLER_CONFIGUARTION`). This metadata is accessible via the Reflect API and is used internally by the framework during request processing to enforce guard checks.
+The decorator attaches the guard(s) as metadata on the target class or method using a specific metadata key (`CONTROLLER_CONFIGURATION`). This metadata is accessible via the Reflect API and is used internally by the framework during request processing to enforce guard checks.
 
 ## Remarks
 

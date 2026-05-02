@@ -6,7 +6,7 @@ This document provides an overview of the middleware decorators available in the
 
 - `@Catch`
 - `@Cors`
-- `@Guard`
+- `@GuardClass`
 - `@Intercept`
 - `@Pipe`
 - `@Sanitize`
@@ -20,7 +20,7 @@ For detailed usage, parameters, examples, and remarks, please refer to the indiv
 
 - [Catch Middleware](catch.md)
 - [Cors Middleware](cors.md)
-- [Guard Middleware](guard.md)
+- [GuardClass Middleware](guard.md)
 - [Intercept Middleware](intercept.md)
 - [Pipe Middleware](pipe.md)
 - [Sanitize Middleware](sanitize.md)

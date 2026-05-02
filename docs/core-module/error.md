@@ -2,11 +2,13 @@
 sidebar_position: 4
 ---
 
-# Validation & Error Handling
+# Built-in Error Handling
+
+Error Handling
 
 Learn how to validate incoming data and handle errors gracefully in your HeliosJS application.
 
-## Built-in Error Handling
+
 
 HeliosJS provides a built-in error handling system that catches exceptions and returns appropriate HTTP responses.
 
@@ -78,7 +80,7 @@ import { Catch } from "@heliosjs/middlewares";
 import { Request, Response } from "@heliosjs/middlewares";
 
 const errorHandler = (error: Error, req: Request, res: Response) => {
-  const erorData = {
+  const errorData = {
     requestId:req.requestId,
     message: error.message,
     timestamp: new Date().toISOString(),

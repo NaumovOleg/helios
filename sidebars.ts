@@ -25,7 +25,8 @@ const sidebars: SidebarsConfig = {
 			items: [
 				"core-module/installation",
 				"core-module/controllers",
-				"core-module/error-validate",
+				"core-module/error",
+				"core-module/validation",
 				"core-module/parameter-decorators",
 			],
 		},
